@@ -13,6 +13,7 @@ pipeline {
             steps {
                 // Очистка рабочего пространства
                 cleanWs()
+                checkout scm
             }
         }
 
