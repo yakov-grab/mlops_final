@@ -34,7 +34,10 @@ pipeline {
         stage('Path in JENKINS_HOME') {
             steps {
                 script {
-                    echo "Значение переменной JENKINS_HOME: ${env.JENKINS_HOME}"
+                    def jenkinsHome = env.JENKINS_HOME
+                    def jobName = env.JOB_NAME
+                    def workspacePath = "${jenkinsHome}/workspace/${jobName}"
+                    echo "Путь к проекту: ${workspacePath}"
                 }
             }
         }
