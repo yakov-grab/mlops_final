@@ -31,6 +31,14 @@ pipeline {
             }
         }
 
+        stage('Path in JENKINS_HOME') {
+            steps {
+                script {
+                    echo "Значение переменной JENKINS_HOME: ${env.JENKINS_HOME}"
+                }
+            }
+        }
+
         stage('Build Docker image') {
             steps {
                 script {
