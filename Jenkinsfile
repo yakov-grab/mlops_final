@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        JENKINS_HOME = "$JENKINS_HOME"
+        BUILD = "${JENKINS_HOME}/workspace/mlops_final"
+    }
+
     stages {
          stage('Start') {
             steps {
