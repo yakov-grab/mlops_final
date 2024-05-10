@@ -29,10 +29,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    // Jenkins при необходимости создаст каталог и переключит контекст
-                    // выполнения команд в нужный каталог
-//                     dir(titanic-disaster) {
-                        sh 'docker build -t titanic-disaster .'
+                    sh 'docker build -t titanic-disaster .'
                 }
             }
         }
