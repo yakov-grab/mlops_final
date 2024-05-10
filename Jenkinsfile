@@ -33,7 +33,6 @@ pipeline {
                     // выполнения команд в нужный каталог
 //                     dir(titanic-disaster) {
                         sh 'docker build -t titanic-disaster .'
-                    }
                 }
             }
         }
