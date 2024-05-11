@@ -46,16 +46,11 @@ pipeline {
 
         stage('Build Docker image') {
             steps {
-                // Для Линукс
-                //script {
-                    //sh 'docker build -t titanic-img .'
-                // Для Windows
-//                withCredentials([usernamePassword(credentialsId: 'docker_token', toolName: 'docker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                  script {
-//                     withDockerRegistry(credentialsId: 'docker_token', toolName: 'docker') {
-                        bat "docker build -t titanic-img -f Dockerfile ."
+                    // Для Линукс
+                    //sh 'docker build -t titanic-img .'
+                    bat "docker build -t titanic-img -f Dockerfile ."
                  }
- //               }
             }
         }
 
