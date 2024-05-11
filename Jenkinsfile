@@ -40,11 +40,20 @@ pipeline {
             }
         }
 
+        stage('Activate venv') {
+            steps {
+                // Активация виртуального окружения
+                script {
+                    bat '.\\venv\\bin\\activate.bat'
+                }
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                // Активация виртуального окружения и установка зависимостей
+                // установка зависимостей
                 script {
-                    bat '. venv\\bin\\activate && pip install -r requirements.txt'
+                    bat 'pip install -r requirements.txt'
                 }
             }
         }
