@@ -31,6 +31,16 @@ pipeline {
             }
         }
 
+        stage('Create model') {
+            steps {
+                script {
+                    // Создаем и обучаем модель
+                    // Вариант для Windows
+                    bat 'python src\\create_model.py'
+                }
+            }
+        }
+
         stage('Path in JENKINS_HOME') {
             steps {
                 script {
