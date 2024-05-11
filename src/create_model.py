@@ -35,6 +35,6 @@ path_to_file = os.path.join(PROJECT_PATH, 'model', 'model.joblib')
 
 try:
     dump(rf_model, path_to_file)
-    print('Модель успешно сохранена в:', path_to_file)
+    print('The model was successfully saved in:', path_to_file)
 except Exception as e:
-    print('Произошла ошибка при сохранении модели:', e)
+    print('An error occurred while saving the model:', e)
