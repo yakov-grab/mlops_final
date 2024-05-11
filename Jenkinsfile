@@ -36,17 +36,26 @@ pipeline {
                 script {
                     def jenkinsHome = env.JENKINS_HOME
                     def jobName = env.JOB_NAME
-                    def workspacePath = "${jenkinsHome}/workspace/${jobName}"
+                    def workspacePath = "${jenkinsHome}\\workspace\\${jobName}"
                     echo "Путь к проекту: ${workspacePath}"
+                    def currentDirectory = env.WORKSPACE
+                    echo "Current directory: ${currentDirectory}"
                 }
             }
         }
 
         stage('Build Docker image') {
             steps {
-                script {
-                    sh 'docker build -t titanic-disaster .'
-                }
+                // Для Линукс
+                //script {
+                    //sh 'docker build -t titanic-img .'
+                // Для Windows
+//                withCredentials([usernamePassword(credentialsId: 'docker_token', toolName: 'docker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                 script {
+//                     withDockerRegistry(credentialsId: 'docker_token', toolName: 'docker') {
+                        bat "docker build -t titanic-img -f Dockerfile ."
+                 }
+ //               }
             }
         }
 
