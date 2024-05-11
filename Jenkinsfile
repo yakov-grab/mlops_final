@@ -31,6 +31,24 @@ pipeline {
             }
         }
 
+        stage('Setup Virtual Environment') {
+            steps {
+                // Создание виртуального окружения
+                script {
+                    bat 'python -m venv venv'
+                }
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Активация виртуального окружения и установка зависимостей
+                script {
+                    bat '. venv\\bin\\activate && pip install -r requirements.txt'
+                }
+            }
+        }
+
         stage('Create model') {
             steps {
                 script {
