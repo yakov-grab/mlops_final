@@ -44,7 +44,7 @@ pipeline {
             steps {
                 // Активация виртуального окружения
                 script {
-                    bat '.\\venv\\bin\\activate.bat'
+                    bat '.\\venv\\scripts\\activate.bat'
                 }
             }
         }
