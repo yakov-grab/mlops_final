@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-from catboost.datasets import titanic
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
@@ -10,8 +9,7 @@ import pickle
 
 # Получаем правильные пути
 SCRIPTS_PATH = os.path.dirname(os.path.abspath(__file__))      # Каталог со скриптами
-PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог проекта
-
+PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог проек
 # Пути к датасетам и моделям
 DATASETS_PATH = PROJECT_PATH + "/datasets/"
 
