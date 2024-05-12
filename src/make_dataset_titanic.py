@@ -1,31 +1,33 @@
-import pandas as pd
+import os
 from catboost.datasets import titanic
 
-train_df, test_df = titanic()
-print("Information about the native dataset:")
-print(train_df.info())
 
-# Заполнение пропущенных значений в поле "Age" средним значением
-mean_age = train_df['Age'].mean()
-print(f"Average age: {mean_age}")
+# Путь к датасетам
+DATASETS_PATH = "../datasets"
+MODELS_PATH = "../models"
 
-train_df['Age'] = train_df['Age'].fillna(mean_age)
-test_df['Age'] = test_df['Age'].fillna(mean_age)
+# Проверяем, существует ли директория DATASETS_PATH
+if not os.path.exists(DATASETS_PATH):
+    try:
+        os.makedirs(DATASETS_PATH)
+        print(f"The {DATASETS_PATH} directory was created successfully.")
+    except OSError as e:
+        print(f"Error creating directory: {e}")
 
-print("Information about the dataset after replacing missing results:")
-print(train_df.info())
+# Проверяем, существует ли директория MODELS_PATH
+if not os.path.exists(MODELS_PATH):
+    try:
+        os.makedirs(MODELS_PATH)
+        print(f"The {MODELS_PATH} directory was created successfully.")
+    except OSError as e:
+        print(f"Error creating directory: {e}")
 
+# Загрузка датасета Titanic
+train_df, _ = titanic()
+
+# Сохранение датасета в CSV
 try:
-    # Сохранение обновленных датасетов в CSV
-    train_df.to_csv('../datasets/train.csv', index=False)
-    test_df.to_csv('../datasets/test.csv', index=False)
-    print("Datasets successfully saved in the directory ../dataset under names train.csv and test.csv.")
+    train_df.to_csv('../datasets/dataset_titanic.csv', index=False)
+    print("Datasets successfully saved in the directory ../dataset under names dataset_titanic.csv.")
 except Exception as e:
     print("An error occurred while saving datasets:", e)
-
-# print("Train dataset:")
-# print(train_df.head())
-
-#print(test_df.info())
-# print("\nTest dataset:")
-# print(test_df.head())

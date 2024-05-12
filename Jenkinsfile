@@ -68,6 +68,23 @@ pipeline {
 //             }
 //         }
 
+        stage('Create dataset Titanic') {
+            steps {
+                script {
+                    // Создаем и обучаем модель
+                    if (isUnix()) {
+                        dir('src') {
+                            sh 'python make_dataset_titanic.py'
+                        }
+                    } else {
+                        dir('src') {
+                            bat 'python make_dataset_titanic.py'
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Create model Titanic') {
             steps {
                 script {
@@ -81,19 +98,6 @@ pipeline {
                             bat 'python model_titanic.py'
                         }
                     }
-                }
-            }
-        }
-
-        stage('Path in JENKINS_HOME') {
-            steps {
-                script {
-                    def jenkinsHome = env.JENKINS_HOME
-                    def jobName = env.JOB_NAME
-                    def workspacePath = "${jenkinsHome}\\workspace\\${jobName}"
-                    echo "Путь к проекту: ${workspacePath}"
-                    def currentDirectory = env.WORKSPACE
-                    echo "Current directory: ${currentDirectory}"
                 }
             }
         }

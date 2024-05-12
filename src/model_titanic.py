@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 from catboost.datasets import titanic
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -8,34 +9,11 @@ import pickle
 
 
 # Путь к датасетам
-DATASETS_PATH = "../datasets"
-MODELS_PATH = "../models"
+DATASETS_PATH = "../datasets/"
+MODELS_PATH = "../models/"
 
-# Проверяем, существует ли директория DATASETS_PATH
-if not os.path.exists(DATASETS_PATH):
-    try:
-        os.makedirs(DATASETS_PATH)
-        print(f"The {DATASETS_PATH} directory was created successfully.")
-    except OSError as e:
-        print(f"Error creating directory: {e}")
-
-# Проверяем, существует ли директория MODELS_PATH
-if not os.path.exists(MODELS_PATH):
-    try:
-        os.makedirs(MODELS_PATH)
-        print(f"The {MODELS_PATH} directory was created successfully.")
-    except OSError as e:
-        print(f"Error creating directory: {e}")
-
-# Загрузка датасета Titanic
-train_df, _ = titanic()
-
-# Сохранение датасета в CSV
-try:
-    train_df.to_csv('../datasets/dataset_titanic.csv', index=False)
-    print("Datasets successfully saved in the directory ../dataset under names dataset_titanic.csv.")
-except Exception as e:
-    print("An error occurred while saving datasets:", e)
+# Загрузка датасета Titanic из файла CSV
+train_df = pd.read_csv(DATASETS_PATH + 'dataset_titanic.csv')
 
 # Заполнение пропущенных значений
 train_df['Age'] = train_df['Age'].fillna(train_df['Age'].median())
@@ -70,6 +48,6 @@ print('Classification Report:')
 print(classification_report(y_test, y_pred))
 
 # Сохраняем модель
-with open('../models/model_titanic.pkl', 'wb') as file:
+with open(MODELS_PATH + 'model_titanic.pkl', 'wb') as file:
     pickle.dump(rf_model, file)
     print('The model was saved successfully: ../models/model_titanic.pkl')
