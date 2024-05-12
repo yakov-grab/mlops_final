@@ -94,14 +94,13 @@ pipeline {
 
         stage('App tests') {
             steps {
-                 script {
+                script {
                     if (isUnix()) {
                         sh 'pytest -v'
                     } else {
                         bat 'pytest -v'
-                        }
                     }
-                 }
+                }
             }
         }
 
