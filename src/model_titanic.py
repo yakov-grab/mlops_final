@@ -14,7 +14,6 @@ PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог 
 
 # Пути к датасетам и моделям
 DATASETS_PATH = PROJECT_PATH + "/datasets/"
-MODELS_PATH = PROJECT_PATH + "/models/"
 
 # Загрузка датасета Titanic из файла CSV
 train_df = pd.read_csv(DATASETS_PATH + 'dataset_titanic.csv')
@@ -53,8 +52,17 @@ print(f"Сoefficient of determination: {r2}")
 print('Classification Report:')
 print(classification_report(y_test, y_pred))
 
+# Проверяем, существует ли директория DATASETS_PATH
+model_path = os.path.join(PROJECT_PATH, "models")
+if not os.path.exists(model_path):
+    try:
+        os.makedirs(model_path)
+        print(f"The {model_path} directory was created successfully.")
+    except OSError as e:
+        print(f"Error creating directory: {e}")
+
 # Сохраняем модель
-model_path = os.path.join(PROJECT_PATH, 'models', 'model_titanic.pkl')
+model_path = os.path.join(model_path, 'model_titanic.pkl')
 with open(model_path, 'wb') as file:
     pickle.dump(rf_model, file)
     print('The model was saved successfully: ../models/model_titanic.pkl')
