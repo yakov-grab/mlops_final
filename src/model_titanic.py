@@ -72,3 +72,4 @@ print(classification_report(y_test, y_pred))
 # Сохраняем модель
 with open('../models/model_titanic.pkl', 'wb') as file:
     pickle.dump(rf_model, file)
+    print('The model was saved successfully: ../models/model_titanic.pkl')
