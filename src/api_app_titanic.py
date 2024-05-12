@@ -1,11 +1,17 @@
+import os
 from fastapi import FastAPI
 import pickle
 from pydantic import BaseModel
 import numpy as np
 
 
-# Загрузите модель из файла pickle
-with open('../models/model_titanic.pkl', 'rb') as model_file:
+# Получаем правильные пути
+SCRIPTS_PATH = os.path.dirname(os.path.abspath(__file__))      # Каталог со скриптами
+PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог проекта
+
+# Загрузим модель из файла pickle
+model_path = os.path.join(PROJECT_PATH, 'models', 'model_titanic.pkl')
+with open(model_path, 'rb') as model_file:
     model = pickle.load(model_file)
     print("The model has been successfully loaded.")
 
