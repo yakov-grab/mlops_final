@@ -54,6 +54,7 @@ print('Classification Report:')
 print(classification_report(y_test, y_pred))
 
 # Сохраняем модель
-with open(MODELS_PATH + 'model_titanic.pkl', 'wb') as file:
+model_path = os.path.join(PROJECT_PATH, 'models', 'model_titanic.pkl')
+with open(model_path, 'wb') as file:
     pickle.dump(rf_model, file)
     print('The model was saved successfully: ../models/model_titanic.pkl')
