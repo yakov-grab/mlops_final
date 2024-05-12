@@ -58,12 +58,22 @@ pipeline {
             }
         }
 
-        stage('Create model') {
+        stage('Create model Iris') {
             steps {
                 script {
                     // Создаем и обучаем модель
                     // Вариант для Windows
                     bat 'python src\\create_model_iris.py'
+                }
+            }
+        }
+
+        stage('Create model Titanic') {
+            steps {
+                script {
+                    // Создаем и обучаем модель
+                    // Вариант для Windows
+                    bat 'python src\\model_titanic.py'
                 }
             }
         }
