@@ -70,5 +70,5 @@ print('Classification Report:')
 print(classification_report(y_test, y_pred))
 
 # Сохраняем модель
-with open('models/model_titanic.pkl', 'wb') as file:
+with open('../models/model_titanic.pkl', 'wb') as file:
     pickle.dump(rf_model, file)

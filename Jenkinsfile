@@ -72,8 +72,15 @@ pipeline {
             steps {
                 script {
                     // Создаем и обучаем модель
-                    // Вариант для Windows
-                    bat 'python src\\model_titanic.py'
+                    if (isUnix()) {
+                        dir('src') {
+                            sh 'python model_titanic.py'
+                        }
+                    } else {
+                        dir('src') {
+                            bat 'python model_titanic.py'
+                        }
+                    }
                 }
             }
         }
