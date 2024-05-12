@@ -63,7 +63,7 @@ pipeline {
                 script {
                     // Создаем и обучаем модель
                     // Вариант для Windows
-                    bat 'python src\\create_model.py'
+                    bat 'python src\\create_model_iris.py'
                 }
             }
         }

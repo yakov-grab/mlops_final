@@ -31,7 +31,7 @@ rf_accuracy = accuracy_score(y_test, rf_y_pred)
 print("Random Forest Accuracy:", rf_accuracy)
 
 # Сохраняем обученную модель в файл
-path_to_file = os.path.join(PROJECT_PATH, 'model', 'model.joblib')
+path_to_file = os.path.join(PROJECT_PATH, 'model', 'model_iris.joblib')
 
 try:
     dump(rf_model, path_to_file)

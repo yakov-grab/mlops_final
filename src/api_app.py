@@ -19,7 +19,7 @@ class IrisPredictionInput(BaseModel):
     petal_width: float
 
 # Загрузка сохраненной модели
-model_path = os.path.join(PROJECT_PATH, 'model', 'model.joblib')
+model_path = os.path.join(PROJECT_PATH, 'model', 'model_iris.joblib')
 
 try:
     model = joblib.load(model_path)
@@ -37,4 +37,4 @@ async def predict(payload: IrisPredictionInput):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
