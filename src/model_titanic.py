@@ -57,4 +57,4 @@ accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy}")
 
 print('Classification Report:')
-print(classification_report(y_test, y_pred)[:10])
+print(classification_report(y_test, y_pred))
