@@ -2,7 +2,18 @@ from catboost.datasets import titanic
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+import os
 
+# Путь к датасетам
+DATASETS_PATH = "..\\datasets"
+
+# Проверяем, существует ли директория
+if not os.path.exists(DATASETS_PATH):
+    try:
+        os.makedirs(DATASETS_PATH)
+        print(f"The {DATASETS_PATH} directory was created successfully.")
+    except OSError as e:
+        print(f"Error creating directory: {e}")
 
 # Загрузка датасета Titanic
 train_df, _ = titanic()
