@@ -8,9 +8,13 @@ from sklearn.metrics import accuracy_score, classification_report, r2_score
 import pickle
 
 
-# Путь к датасетам
-DATASETS_PATH = "../datasets/"
-MODELS_PATH = "../models/"
+# Получаем правильные пути
+SCRIPTS_PATH = os.path.dirname(os.path.abspath(__file__))      # Каталог со скриптами
+PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог проекта
+
+# Пути к датасетам и моделям
+DATASETS_PATH = PROJECT_PATH + "/datasets/"
+MODELS_PATH = PROJECT_PATH + "/models/"
 
 # Загрузка датасета Titanic из файла CSV
 train_df = pd.read_csv(DATASETS_PATH + 'dataset_titanic.csv')
