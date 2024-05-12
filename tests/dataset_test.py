@@ -7,10 +7,12 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report, r2_score
 import pickle
 
+# Получаем правильные пути
+SCRIPTS_PATH = os.path.dirname(os.path.abspath(__file__))      # Каталог со скриптами
+PROJECT_PATH = os.path.dirname(SCRIPTS_PATH)                   # Каталог проекта
 
 # Путь к датасетам
-DATASETS_PATH = "../datasets/"
-MODELS_PATH = "../models/"
+DATASETS_PATH = PROJECT_PATH + "/datasets/"
 
 # Загрузка датасета Titanic из файла CSV
 train_df = pd.read_csv(DATASETS_PATH + 'dataset_titanic.csv')
@@ -46,10 +48,5 @@ print(f"Accuracy: {accuracy}")
 r2 = r2_score(y_test, y_pred)
 print(f"Сoefficient of determination: {r2}")
 
-print('Classification Report:')
-print(classification_report(y_test, y_pred))
-
-# Сохраняем модель
-with open(MODELS_PATH + 'model_titanic.pkl', 'wb') as file:
-    pickle.dump(rf_model, file)
-    print('The model was saved successfully: ../models/model_titanic.pkl')
+def test_predictions():
+   assert r2_score(y_test, y_pred) > 0.2, "This dataset has problem."

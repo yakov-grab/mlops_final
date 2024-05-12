@@ -1,10 +1,10 @@
 import os
+import pandas as pd
 from catboost.datasets import titanic
 
 
 # Путь к датасетам
 DATASETS_PATH = "../datasets"
-MODELS_PATH = "../models"
 
 # Проверяем, существует ли директория DATASETS_PATH
 if not os.path.exists(DATASETS_PATH):
@@ -14,16 +14,10 @@ if not os.path.exists(DATASETS_PATH):
     except OSError as e:
         print(f"Error creating directory: {e}")
 
-# Проверяем, существует ли директория MODELS_PATH
-if not os.path.exists(MODELS_PATH):
-    try:
-        os.makedirs(MODELS_PATH)
-        print(f"The {MODELS_PATH} directory was created successfully.")
-    except OSError as e:
-        print(f"Error creating directory: {e}")
 
 # Загрузка датасета Titanic
 train_df, _ = titanic()
+print(train_df.info())
 
 # Сохранение датасета в CSV
 try:
