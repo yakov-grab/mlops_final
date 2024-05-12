@@ -58,16 +58,6 @@ pipeline {
             }
         }
 
-//         stage('Create model Iris') {
-//             steps {
-//                 script {
-//                     // Создаем и обучаем модель
-//                     // Вариант для Windows
-//                     bat 'python src\\create_model_iris.py'
-//                 }
-//             }
-//         }
-
         stage('Create dataset Titanic') {
             steps {
                 script {
@@ -99,6 +89,20 @@ pipeline {
                         }
                     }
                 }
+            }
+        }
+
+        stage('App tests') {
+            steps {
+                 script {
+                    if (isUnix()) {
+                        sh 'pytest -v'
+                        }
+                    } else {
+                        bat 'pytest -v'
+                        }
+                    }
+                 }
             }
         }
 
