@@ -49,7 +49,7 @@ for col in ['Sex', 'Embarked']:
     label_encoders[col] = le
 
 # Разделение данных на признаки и целевую переменную
-X = train_df.drop(['Survived', 'Name', 'Ticket', 'Cabin'], axis=1)
+X = train_df.drop(['PassengerId', 'Survived', 'Name', 'Ticket', 'Cabin'], axis=1)
 y = train_df['Survived']
 
 # Разделение на обучающий и тестовый наборы
