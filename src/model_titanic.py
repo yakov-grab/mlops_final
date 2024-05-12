@@ -28,8 +28,8 @@ except Exception as e:
     print("An error occurred while saving datasets:", e)
 
 # Заполнение пропущенных значений
-train_df['Age'].fillna(train_df['Age'].median(), inplace=True)
-train_df['Embarked'].fillna(train_df['Embarked'].mode()[0], inplace=True)
+train_df['Age'] = train_df['Age'].fillna(train_df['Age'].median())
+train_df['Embarked'] = train_df['Embarked'].fillna(train_df['Embarked'].mode()[0])
 
 # Преобразование категориальных признаков
 label_encoders = {}
