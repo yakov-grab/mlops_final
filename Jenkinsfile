@@ -97,7 +97,6 @@ pipeline {
                  script {
                     if (isUnix()) {
                         sh 'pytest -v'
-                        }
                     } else {
                         bat 'pytest -v'
                         }
