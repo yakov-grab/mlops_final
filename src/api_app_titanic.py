@@ -3,6 +3,7 @@ from fastapi import FastAPI
 import pickle
 from pydantic import BaseModel
 import numpy as np
+import pandas as pd
 
 
 # Получаем правильные пути
@@ -31,8 +32,15 @@ app = FastAPI()
 
 @app.post("/predict")
 async def predict_survival(passenger: Passenger):
-    X_new = np.array([[passenger.Pclass, passenger.Sex, passenger.Age, passenger.SibSp, passenger.Parch, passenger.Fare, passenger.Embarked]])
-    prediction = model.predict(X_new)
+    test_data = np.array([[passenger.Pclass, passenger.Sex, passenger.Age,
+                       passenger.SibSp, passenger.Parch, passenger.Fare, passenger.Embarked]])
+
+    # Set feature names for RandomForestClassifier
+    column_names = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']
+    X_test = pd.DataFrame(test_data, columns=column_names)
+
+    prediction = model.predict(X_test)
+
     return {"survival_prediction": int(prediction[0])}
 
 # Запуск FastAPI приложения
