@@ -1,19 +1,29 @@
-# import pandas as pd
+import os
 from catboost.datasets import titanic
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
-import os
+import pickle
+
 
 # Путь к датасетам
-DATASETS_PATH = "..\\datasets"
+DATASETS_PATH = "../datasets"
+MODELS_PATH = "../models"
 
-# Проверяем, существует ли директория
+# Проверяем, существует ли директория DATASETS_PATH
 if not os.path.exists(DATASETS_PATH):
     try:
         os.makedirs(DATASETS_PATH)
         print(f"The {DATASETS_PATH} directory was created successfully.")
+    except OSError as e:
+        print(f"Error creating directory: {e}")
+
+# Проверяем, существует ли директория MODELS_PATH
+if not os.path.exists(MODELS_PATH):
+    try:
+        os.makedirs(MODELS_PATH)
+        print(f"The {MODELS_PATH} directory was created successfully.")
     except OSError as e:
         print(f"Error creating directory: {e}")
 
@@ -58,3 +68,7 @@ print(f"Accuracy: {accuracy}")
 
 print('Classification Report:')
 print(classification_report(y_test, y_pred))
+
+# Сохраняем модель
+with open('models/model_titanic.pkl', 'wb') as file:
+    pickle.dump(rf_model, file)
