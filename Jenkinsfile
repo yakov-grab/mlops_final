@@ -36,7 +36,7 @@ pipeline {
                 // Создание виртуального окружения
                 script {
                     if (isUnix()) {
-                        sh 'python3 -m venv venv'
+                        // sh 'python3 -m venv venv'
                     } else {
                         bat 'python -m venv venv'  
                     }   
@@ -49,7 +49,7 @@ pipeline {
                 // Активация виртуального окружения
                 script {
                     if (isUnix()) {
-                        sh '/venv/scripts/activate'
+                        // sh '/venv/scripts/activate'
                     } else {
                         bat '.\\venv\\scripts\\activate.bat' 
                     }
