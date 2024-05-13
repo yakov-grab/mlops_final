@@ -49,7 +49,7 @@ pipeline {
                 // Активация виртуального окружения
                 script {
                     if (isUnix()) {
-                        sh './venv/scripts/activate.bat'
+                        sh './venv/scripts/activate'
                     } else {
                         bat '.\\venv\\scripts\\activate.bat'
                     }
