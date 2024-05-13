@@ -1,10 +1,10 @@
 pipeline {
     agent any
 
-    environment {
-        JENKINS_HOME = "$JENKINS_HOME"
-        BUILD = "${JENKINS_HOME}/workspace/mlops_final"
-    }
+//     environment {
+//         JENKINS_HOME = "$JENKINS_HOME"
+//         BUILD = "${JENKINS_HOME}/workspace/mlops_final"
+//     }
 
     stages {
          stage('Start') {
@@ -35,7 +35,11 @@ pipeline {
             steps {
                 // Создание виртуального окружения
                 script {
-                    bat 'python -m venv venv'
+                    if (isUnix()) {
+                        sh 'python -m venv venv'
+                    } else {
+                        bat 'python -m venv venv'
+                    }
                 }
             }
         }
@@ -44,7 +48,11 @@ pipeline {
             steps {
                 // Активация виртуального окружения
                 script {
-                    bat '.\\venv\\scripts\\activate.bat'
+                    if (isUnix()) {
+                        sh './venv/scripts/activate.bat'
+                    } else {
+                        bat '.\\venv\\scripts\\activate.bat'
+                    }
                 }
             }
         }
@@ -53,7 +61,11 @@ pipeline {
             steps {
                 // установка зависимостей
                 script {
-                    bat 'pip install -r requirements.txt'
+                    if (isUnix()) {
+                        sh 'pip install -r requirements.txt'
+                    } else {
+                        bat 'pip install -r requirements.txt'
+                    }
                 }
             }
         }
@@ -64,13 +76,15 @@ pipeline {
                     // Создаем и обучаем модель
                     if (isUnix()) {
                         dir('src') {
-                            sh 'python dataset_titanic_modifed.py'
-                            //sh 'python make_dataset_titanic.py'
+                            // Можно выбрать хороший датасет или модифицированный (плохой) датасет
+                            sh 'python make_dataset_titanic.py'
+                            //sh 'python dataset_titanic_modifed.py'
                         }
                     } else {
                         dir('src') {
-                            bat 'python dataset_titanic_modifed.py'
-                            //bat 'python make_dataset_titanic.py'
+                            // Можно выбрать хороший датасет или модифицированный (плохой) датасет
+                            bat 'python make_dataset_titanic.py'
+                            //bat 'python dataset_titanic_modifed.py'
                         }
                     }
                 }
@@ -110,8 +124,11 @@ pipeline {
             steps {
                  script {
                     // Для Линукс
-                    //sh 'docker build -t titanic-img .'
-                    bat "docker build -t titanic-img -f Dockerfile ."
+                    if (isUnix()) {
+                        sh 'docker build -t titanic-img .'
+                    } else {
+                        bat "docker build -t titanic-img -f Dockerfile ."
+                    }
                  }
             }
         }
@@ -124,10 +141,4 @@ pipeline {
             }
         }
     }
-//     post {
-//         always {
-//             // Очистка рабочего пространства после завершения
-//             cleanWs()
-//         }
-//     }
 }
