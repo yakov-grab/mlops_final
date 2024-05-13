@@ -35,7 +35,7 @@ pipeline {
             steps {
                 // Создание виртуального окружения
                 script {
-                    bat 'python -m venv venv'
+                    bat 'python3 -m venv venv'
                 }
             }
         }
