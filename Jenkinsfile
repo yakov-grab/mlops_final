@@ -112,7 +112,7 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
-                        sh 'pytest -v'
+                        sh 'python3 -m pytest -v'
                     } else {
                         bat 'pytest -v'
                     }
