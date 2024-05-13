@@ -4,14 +4,14 @@ The final project
 Структура проекта и назначение файлов:
 
 src/                                - каталог с исполняемыми скриптами приложения
-    ./api_app_titanic.py            - API приложение на FASTAPI
-    ./dataset_titanic_modifed.py    - создаем "плохой" датасет
-    ./make_dataset_titanic.py       - сохраняем датасет Titanic
-    ./model_titanic.py              - обучаем модель на данных датасета Titanic
+    src/api_app_titanic.py            - API приложение на FASTAPI
+    src/dataset_titanic_modifed.py    - создаем "плохой" датасет
+    src/make_dataset_titanic.py       - сохраняем датасет Titanic
+    src/model_titanic.py              - обучаем модель на данных датасета Titanic
 
 test/
-    ./api_app_test.py               - модульное тестирование API приложения
-    ./dataset_test.py               - функциональное тестирование предсказательной способности модели
+    test/api_app_test.py               - модульное тестирование API приложения
+    test/dataset_test.py               - функциональное тестирование предсказательной способности модели
 
 ./doker_container_run.bat           - запуск docker контейнера с приложением из образа (Windows)
 ./doker_container_run.sh            - запуск docker контейнера с приложением из образа (Unix)

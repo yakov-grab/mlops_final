@@ -1,6 +1,9 @@
 # Используем официальный образ Python
 FROM python:3.10-slim
 
+# Обновляем список пакетов и устанавливаем curl
+#RUN apt-get update && apt-get install -y curl
+
 # Устанавливаем рабочий каталог приложения в контейнере
 WORKDIR /usr/src/app
 
