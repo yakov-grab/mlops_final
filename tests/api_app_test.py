@@ -14,7 +14,7 @@ from api_app_titanic import app
 client = TestClient(app)
 def test_api_app():
     response = client.post("/predict/",
-                           json={"Pclass": 1, "Sex": 0, "Age": 20.0, "SibSp": 0, "Parch": 0, "Fare": 15, "Embarked": 0})
+                           json={"Pclas": 1, "Sex": 0, "Age": 20.0, "SibSp": 0, "Parch": 0, "Fare": 15, "Embarked": 0})
     json_data = response.json()
     assert response.status_code == 200
 

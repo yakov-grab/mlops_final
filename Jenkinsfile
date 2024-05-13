@@ -64,11 +64,13 @@ pipeline {
                     // Создаем и обучаем модель
                     if (isUnix()) {
                         dir('src') {
-                            sh 'python make_dataset_titanic.py'
+                            sh 'python dataset_titanic_modifed.py'
+                            //sh 'python make_dataset_titanic.py'
                         }
                     } else {
                         dir('src') {
-                            bat 'python make_dataset_titanic.py'
+                            bat 'python dataset_titanic_modifed.py'
+                            //bat 'python make_dataset_titanic.py'
                         }
                     }
                 }
