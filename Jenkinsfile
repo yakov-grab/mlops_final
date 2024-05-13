@@ -36,7 +36,7 @@ pipeline {
                 // Создание виртуального окружения
                 script {
                     if (isUnix()) {
-                        sh 'python -m venv venv'
+                        sh 'python3 -m venv venv'
                     } else {
                         bat 'python -m venv venv'  
                     }   
@@ -76,7 +76,7 @@ pipeline {
                     // Создаем и обучаем модель
                     if (isUnix()) {
                         dir('src') {
-                            sh 'python make_dataset_titanic.py'
+                            sh 'python3 make_dataset_titanic.py'
                         }
                     } else {
                         dir('src') {
@@ -93,7 +93,7 @@ pipeline {
                     // Создаем и обучаем модель
                     if (isUnix()) {
                         dir('src') {
-                            sh 'python model_titanic.py'
+                            sh 'python3 model_titanic.py'
                         }
                     } else {
                         dir('src') {
