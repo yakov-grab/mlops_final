@@ -38,7 +38,7 @@ pipeline {
                     if (isUnix()) {
                         sh 'python3 -m venv venv'
                     } else {
-                        bat 'python -m venv venv'
+                        bat 'python3 -m venv venv'
                     }
                 }
             }
@@ -77,13 +77,13 @@ pipeline {
                     if (isUnix()) {
                         dir('src') {
                             // Можно выбрать хороший датасет или модифицированный (плохой) датасет
-                            sh 'python make_dataset_titanic.py'
+                            sh 'python3 make_dataset_titanic.py'
                             //sh 'python dataset_titanic_modifed.py'
                         }
                     } else {
                         dir('src') {
                             // Можно выбрать хороший датасет или модифицированный (плохой) датасет
-                            bat 'python make_dataset_titanic.py'
+                            bat 'python3 make_dataset_titanic.py'
                             //bat 'python dataset_titanic_modifed.py'
                         }
                     }
@@ -97,11 +97,11 @@ pipeline {
                     // Создаем и обучаем модель
                     if (isUnix()) {
                         dir('src') {
-                            sh 'python model_titanic.py'
+                            sh 'python3 model_titanic.py'
                         }
                     } else {
                         dir('src') {
-                            bat 'python model_titanic.py'
+                            bat 'python3 model_titanic.py'
                         }
                     }
                 }
