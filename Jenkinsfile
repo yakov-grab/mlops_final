@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-         stage('Start') {
+        stage('Start') {
             steps {
                 script {
                     echo 'Начало работы скриптов.'
@@ -35,16 +35,24 @@ pipeline {
             steps {
                 // Создание виртуального окружения
                 script {
-                    bat 'python -m venv venv'
+                    if (isUnix()) {
+                        sh 'python -m venv venv'
+                    } else {
+                        bat 'python -m venv venv'  
+                    }   
                 }
-            }
+            } 
         }
 
         stage('Activate venv') {
             steps {
                 // Активация виртуального окружения
                 script {
-                    bat '.\\venv\\scripts\\activate.bat'
+                    if (isUnix()) {
+                        sh '/venv/scripts/activate'
+                    } else {
+                        bat '.\\venv\\scripts\\activate.bat' 
+                    }
                 }
             }
         }
@@ -53,7 +61,11 @@ pipeline {
             steps {
                 // установка зависимостей
                 script {
-                    bat 'pip install -r requirements.txt'
+                    if (isUnix()) {
+                        sh 'pip install -r requirements.txt'
+                    } else {
+                        bat 'pip install -r requirements.txt'
+                    }
                 }
             }
         }
@@ -107,10 +119,12 @@ pipeline {
         stage('Build Docker image') {
             steps {
                  script {
-                    // Для Линукс
-                    //sh 'docker build -t titanic-img .'
-                    bat "docker build -t titanic-img -f Dockerfile ."
-                 }
+                    if (isUnix()) {
+                        sh "docker build -t titanic-img -f Dockerfile ."
+                    } else {
+                        bat "docker build -t titanic-img -f Dockerfile ."
+                    }
+                }
             }
         }
 
@@ -122,10 +136,4 @@ pipeline {
             }
         }
     }
-//     post {
-//         always {
-//             // Очистка рабочего пространства после завершения
-//             cleanWs()
-//         }
-//     }
 }
