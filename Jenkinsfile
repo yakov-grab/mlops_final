@@ -36,7 +36,7 @@ pipeline {
                 // Создание виртуального окружения
                 script {
                     if (isUnix()) {
-                        sh 'python -m venv venv'
+                        sh 'python3 -m venv venv'
                     } else {
                         bat 'python -m venv venv'
                     }
